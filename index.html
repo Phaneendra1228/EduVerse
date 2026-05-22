@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduVerse - Your gateway to world-class education, career guidance, and professional development. Learn, grow, and succeed with us.">
+  <title>EduVerse — Future of Learning</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .preloader{position:fixed;inset:0;z-index:9999;background:var(--bg-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s ease;}
+    .preloader.hidden{opacity:0;pointer-events:none;}
+    .preloader-logo{font-family:'Outfit',sans-serif;font-size:2.5rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:24px;}
+    .preloader-logo span{-webkit-text-fill-color:var(--accent);}
+    .preloader-bar{width:200px;height:4px;background:rgba(108,92,231,0.15);border-radius:2px;overflow:hidden;}
+    .preloader-fill{height:100%;width:0;background:var(--gradient-primary);border-radius:2px;animation:load 1.2s ease forwards;}
+    @keyframes load{to{width:100%}}
+    .page-transition{animation:fadeIn 0.4s ease;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-logo">Edu<span>Verse</span></div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+
+  <!-- ========== Top Bar ========== -->
+  <div class="top-bar">
+    <div class="container">
+      <span>📧 contact@eduverse.com &nbsp;|&nbsp; 📞 +91 98765 43210</span>
+      <div class="top-bar-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Navbar ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo" data-page="home">Edu<span>Verse</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#" class="active" data-page="home">Home</a>
+        <a href="#" data-page="meetings">Meetings</a>
+        <a href="#" data-page="about">About Us</a>
+        <a href="#" data-page="courses">Courses</a>
+        <a href="#" data-page="career">Career Guidance</a>
+        <a href="#" data-page="resume">Resume Builder</a>
+        <a href="#" data-page="dossier">Dossier</a>
+        <a href="#" data-page="profile">Profile</a>
+        <a href="dashboard.html" style="color:var(--accent);"><i class="fas fa-th-large"></i> Dashboard</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HOME PAGE ==================== -->
+  <div class="page active" id="page-home">
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge"><span class="dot"></span> Welcome to EduVerse</div>
+          <h1>Shape Your Future with <span class="gradient-text">Smart Learning</span></h1>
+          <p>An immersive platform connecting students with world-class education, mentorship, and career resources to unlock unlimited potential.</p>
+          <div class="hero-btns">
+            <a href="#" class="btn btn-primary" data-page="courses">Explore Courses <i class="fas fa-arrow-right"></i></a>
+            <a href="#" class="btn btn-secondary" style="border-color:rgba(255,255,255,0.3);color:#fff;" data-page="about">Learn More</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><h3>12K<span class="accent">+</span></h3><p>Active Students</p></div>
+            <div class="hero-stat"><h3>200<span class="accent">+</span></h3><p>Expert Courses</p></div>
+            <div class="hero-stat"><h3>98<span class="accent">%</span></h3><p>Success Rate</p></div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="images/hero-banner.png" alt="Students learning together">
+          <div class="hero-floating-card card-1">
+            <div class="card-icon">🎓</div>
+            <h4>150+ Mentors</h4>
+            <p>Industry experts ready to guide</p>
+          </div>
+          <div class="hero-floating-card card-2">
+            <div class="card-icon">🏆</div>
+            <h4>Top Rated</h4>
+            <p>4.9/5 student satisfaction</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section section-light" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag"><i class="fas fa-star"></i> Why EduVerse</span>
+          <h2>Everything You Need to Succeed</h2>
+          <p>We combine the best resources, technology, and community to give you an unmatched learning experience.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎓</div>
+            <h3>Premium Education</h3>
+            <p>Curated curriculum designed by industry leaders with hands-on projects and real-world applications.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👨‍🏫</div>
+            <h3>Expert Mentors</h3>
+            <p>Learn from professionals with years of experience who provide personalized guidance and feedback.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>Live Sessions</h3>
+            <p>Interactive virtual meetings and webinars connecting learners globally for real-time collaboration.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🤝</div>
+            <h3>Strong Network</h3>
+            <p>Build meaningful professional connections that open doors to career opportunities worldwide.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Track Progress</h3>
+            <p>Advanced analytics and dashboards to monitor your learning journey and celebrate milestones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Home Meetings Preview -->
+    <section class="section section-dark" id="home-meetings">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag"><i class="fas fa-calendar-alt"></i> Events</span>
+          <h2>Upcoming Meetings</h2>
+          <p>Join live sessions, workshops, and networking events to accelerate your growth.</p>
+        </div>
+        <div class="meetings-tabs">
+          <button class="meeting-tab active">All Events</button>
+          <button class="meeting-tab">Workshops</button>
+          <button class="meeting-tab">Sessions</button>
+          <button class="meeting-tab">Programs</button>
+        </div>
+        <div class="meetings-grid" id="homeMeetingsGrid">
+          <!-- Filled by JS -->
+        </div>
+        <div style="text-align:center;margin-top:40px;">
+          <a href="#" class="btn btn-primary" data-page="meetings">View All Meetings <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="about-banner" style="background-image:url('images/about-banner.png')">
+      <div class="container">
+        <h2>Start Your Degree Journey Today</h2>
+        <p>Join thousands of students who have transformed their careers through our accredited programs and industry partnerships.</p>
+        <a href="#" class="btn btn-gold" data-page="courses">Apply Now <i class="fas fa-graduation-cap"></i></a>
+      </div>
+    </section>
+
+    <!-- Accordion / FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag"><i class="fas fa-question-circle"></i> FAQ</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>Quick answers to the most common questions about our platform and programs.</p>
+        </div>
+        <div style="max-width:750px;margin:0 auto;">
+          <div class="accordion-item open">
+            <div class="accordion-header">How do I enroll in a course? <span class="accordion-arrow"><i class="fas fa-chevron-down"></i></span></div>
+            <div class="accordion-body"><p>Simply browse our course catalog, select the program you're interested in, and click "Enroll Now." You'll be guided through a quick registration process to get started immediately.</p></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">Are the courses self-paced? <span class="accordion-arrow"><i class="fas fa-chevron-down"></i></span></div>
+            <div class="accordion-body"><p>Yes! All our courses are designed to fit your schedule. Learn at your own pace with lifetime access to course materials, recordings, and resources.</p></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">Do I get a certificate after completion? <span class="accordion-arrow"><i class="fas fa-chevron-down"></i></span></div>
+            <div class="accordion-body"><p>Absolutely. Upon successful completion of any course, you'll receive a verified digital certificate recognized by industry partners worldwide.</p></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">What support is available for students? <span class="accordion-arrow"><i class="fas fa-chevron-down"></i></span></div>
+            <div class="accordion-body"><p>We offer 24/7 support through our AI assistant, mentor office hours, community forums, and dedicated student success coordinators.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== MEETINGS PAGE ==================== -->
+  <div class="page" id="page-meetings">
+    <div class="page-header" style="background-image:url('images/meeting-banner.png')">
+      <div class="container">
+        <h1>Meetings & Events</h1>
+        <p>Connect, collaborate, and grow through our curated live sessions and workshops.</p>
+      </div>
+    </div>
+    <section class="section section-dark">
+      <div class="container">
+        <div class="meetings-tabs">
+          <button class="meeting-tab active">All Events</button>
+          <button class="meeting-tab">Workshops</button>
+          <button class="meeting-tab">Seminars</button>
+          <button class="meeting-tab">Conferences</button>
+          <button class="meeting-tab">Webinars</button>
+        </div>
+        <div class="meetings-grid" id="allMeetingsGrid">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== ABOUT PAGE ==================== -->
+  <div class="page" id="page-about">
+    <div class="page-header" style="background-image:url('images/about-banner.png')">
+      <div class="container">
+        <h1>About EduVerse</h1>
+        <p>Empowering the next generation of learners through innovation, technology, and personalized experiences.</p>
+      </div>
+    </div>
+    <section class="section section-light">
+      <div class="container">
+        <div class="stats-row">
+          <div class="stat-card" style="background:rgba(108,92,231,0.06);border-color:rgba(108,92,231,0.12);">
+            <h3 style="color:var(--primary);" data-count="12000">0+</h3><p style="color:var(--text-body);">Students Enrolled</p>
+          </div>
+          <div class="stat-card" style="background:rgba(0,206,201,0.06);border-color:rgba(0,206,201,0.12);">
+            <h3 style="color:var(--accent);" data-count="150">0+</h3><p style="color:var(--text-body);">Expert Instructors</p>
+          </div>
+          <div class="stat-card" style="background:rgba(249,202,36,0.06);border-color:rgba(249,202,36,0.12);">
+            <h3 style="color:var(--gold-dark);" data-count="200">0+</h3><p style="color:var(--text-body);">Courses Available</p>
+          </div>
+          <div class="stat-card" style="background:rgba(108,92,231,0.06);border-color:rgba(108,92,231,0.12);">
+            <h3 style="color:var(--primary);">98%</h3><p style="color:var(--text-body);">Success Rate</p>
+          </div>
+        </div>
+        <div style="max-width:800px;margin:64px auto 0;text-align:center;">
+          <h2 style="font-size:2rem;margin-bottom:16px;">Our Mission</h2>
+          <p style="font-size:1.05rem;color:var(--text-body);line-height:1.9;">At EduVerse, we believe education is the foundation of progress. Our mission is to democratize world-class learning by providing accessible, engaging, and industry-relevant courses that empower students to build successful careers. We combine cutting-edge technology with expert instruction to create a learning environment that inspires curiosity and drives results.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== COURSES PAGE ==================== -->
+  <div class="page" id="page-courses">
+    <div class="page-header" style="background-image:url('images/course-webdev.png')">
+      <div class="container">
+        <h1>Our Courses</h1>
+        <p>Explore our comprehensive catalog of industry-leading courses.</p>
+      </div>
+    </div>
+    <section class="section section-light">
+      <div class="container">
+        <div class="courses-search">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="courseSearch" placeholder="Search courses...">
+        </div>
+        <div class="courses-grid" id="coursesGrid">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== CAREER GUIDANCE PAGE ==================== -->
+  <div class="page" id="page-career">
+    <div class="page-header" style="background-image:url('images/about-banner.png')">
+      <div class="container">
+        <h1>Career Guidance</h1>
+        <p>Plan your learning path, track your progress, and discover where your interests lead you.</p>
+      </div>
+    </div>
+    <section class="section section-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag"><i class="fas fa-route"></i> Roadmap</span>
+          <h2>Learning Roadmap</h2>
+          <p>A step-by-step path to grow from basics to advanced development and land your dream role.</p>
+        </div>
+        <div class="roadmap" id="roadmap">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== RESUME BUILDER PAGE ==================== -->
+  <div class="page" id="page-resume">
+    <div class="page-header" style="background-image:url('images/meeting-banner.png')">
+      <div class="container">
+        <h1>Resume Builder</h1>
+        <p>Create a professional resume with our intelligent form builder.</p>
+      </div>
+    </div>
+    <section class="section section-light">
+      <div class="container">
+        <div class="resume-builder">
+          <div class="resume-form">
+            <h3>Basic Information</h3>
+            <div class="form-group"><label for="r-name">Full Name</label><input type="text" id="r-name" placeholder="Your full name"></div>
+            <div class="form-group"><label for="r-phone">Mobile Number</label><input type="tel" id="r-phone" placeholder="e.g. +91 98765 43210"></div>
+            <div class="form-group"><label for="r-email">Email Address</label><input type="email" id="r-email" placeholder="your.email@gmail.com"></div>
+            <div class="form-group"><label for="r-linkedin">LinkedIn URL</label><input type="url" id="r-linkedin" placeholder="https://linkedin.com/in/yourprofile"></div>
+            <h3 style="margin-top:32px;">Education</h3>
+            <div class="form-group"><label for="r-degree">Degree</label><input type="text" id="r-degree" placeholder="e.g. B.Tech Computer Science"></div>
+            <div class="form-group"><label for="r-college">College/University</label><input type="text" id="r-college" placeholder="e.g. KL University"></div>
+            <div class="form-group"><label for="r-year">Graduation Year</label><input type="text" id="r-year" placeholder="e.g. 2026"></div>
+            <h3 style="margin-top:32px;">Skills & Experience</h3>
+            <div class="form-group"><label for="r-skills">Skills</label><input type="text" id="r-skills" placeholder="e.g. Python, React, Machine Learning"></div>
+            <div class="form-group"><label for="r-exp">Experience / Projects</label><textarea id="r-exp" placeholder="Describe your key projects and experience..."></textarea></div>
+            <div class="form-group"><label for="r-objective">Career Objective</label><textarea id="r-objective" placeholder="Write a brief career objective..."></textarea></div>
+            <button class="btn btn-primary" id="generateResume" style="width:100%;justify-content:center;margin-top:8px;">Generate Resume <i class="fas fa-file-alt"></i></button>
+          </div>
+          <div class="resume-preview" id="resumePreview">
+            <h3 id="prev-name">Your Name</h3>
+            <p class="preview-subtitle" id="prev-contact">Email • Phone • LinkedIn</p>
+            <div class="resume-preview-section"><h4>Objective</h4><p id="prev-objective">Your career objective will appear here...</p></div>
+            <div class="resume-preview-section"><h4>Education</h4><p id="prev-education">Your education details will appear here...</p></div>
+            <div class="resume-preview-section"><h4>Skills</h4><p id="prev-skills">Your skills will appear here...</p></div>
+            <div class="resume-preview-section"><h4>Experience & Projects</h4><p id="prev-exp">Your experience will appear here...</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== DOSSIER PAGE ==================== -->
+  <div class="page" id="page-dossier">
+    <div class="page-header" style="background-image:url('images/about-banner.png')">
+      <div class="container">
+        <h1>My Dossier</h1>
+        <p>ATS tips and recommended skills tailored to company requirements.</p>
+      </div>
+    </div>
+    <section class="section section-light">
+      <div class="container">
+        <div class="dossier-grid">
+          <div class="ats-guide">
+            <h3>ATS (Applicant Tracking System) Guide</h3>
+            <p>Optimize your resume so it passes company applicant tracking systems.</p>
+            <div class="ats-meter">
+              <svg viewBox="0 0 200 120">
+                <defs>
+                  <linearGradient id="atsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ff6b6b"/>
+                    <stop offset="33%" stop-color="#f9ca24"/>
+                    <stop offset="66%" stop-color="#55efc4"/>
+                    <stop offset="100%" stop-color="#00cec9"/>
+                  </linearGradient>
+                </defs>
+                <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="rgba(108,92,231,0.1)" stroke-width="14" stroke-linecap="round"/>
+                <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#atsGrad)" stroke-width="14" stroke-linecap="round"
+                  stroke-dasharray="251" stroke-dashoffset="63" id="atsArc"/>
+              </svg>
+              <div class="ats-score">75%</div>
+            </div>
+            <ul class="ats-criteria">
+              <li><span class="label"><span class="dot" style="background:#55efc4;"></span> Length</span><span class="value">80%</span></li>
+              <li><span class="label"><span class="dot" style="background:#00cec9;"></span> Keyword Optimization</span><span class="value">80%</span></li>
+              <li><span class="label"><span class="dot" style="background:#f9ca24;"></span> Content Quality</span><span class="value">60%</span></li>
+              <li><span class="label"><span class="dot" style="background:#6c5ce7;"></span> Formatting</span><span class="value">70%</span></li>
+              <li><span class="label"><span class="dot" style="background:#ff6b6b;"></span> Impact Verbs</span><span class="value">55%</span></li>
+            </ul>
+          </div>
+          <div class="skills-panel">
+            <h3>Recommended Skills</h3>
+            <div class="skill-bar"><div class="skill-bar-header"><span>JavaScript</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-header"><span>Python</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-header"><span>React / Next.js</span><span>82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-header"><span>Data Structures</span><span>78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-header"><span>Machine Learning</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-header"><span>Cloud & DevOps</span><span>65%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== PROFILE PAGE ==================== -->
+  <div class="page" id="page-profile">
+    <div class="page-header" style="background-image:url('images/hero-banner.png')">
+      <div class="container">
+        <h1>My Profile</h1>
+        <p>View and manage your personal information.</p>
+      </div>
+    </div>
+    <section class="section section-light">
+      <div class="container">
+        <div class="profile-card">
+          <div class="profile-avatar">BP</div>
+          <h2>Bhanu Prakash</h2>
+          <p class="profile-role">Computer Science Student</p>
+          <div class="profile-details">
+            <div class="profile-field"><span class="label">Student ID</span><span class="value">EDV-2024-0142</span></div>
+            <div class="profile-field"><span class="label">Email</span><span class="value">bhanu@eduverse.com</span></div>
+            <div class="profile-field"><span class="label">Phone</span><span class="value">+91 98765 43210</span></div>
+            <div class="profile-field"><span class="label">Department</span><span class="value">Computer Science & Engineering</span></div>
+            <div class="profile-field"><span class="label">Year</span><span class="value">3rd Year (2024-2028)</span></div>
+            <div class="profile-field"><span class="label">University</span><span class="value">KL University</span></div>
+            <div class="profile-field"><span class="label">Courses Enrolled</span><span class="value">5</span></div>
+            <div class="profile-field"><span class="label">Certificates</span><span class="value">3</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== CTA Section ========== -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <h2>Ready to Transform Your Future?</h2>
+      <p>Join 12,000+ students already learning on EduVerse. Start your journey today.</p>
+      <a href="#" class="btn btn-gold" data-page="courses">Get Started Free <i class="fas fa-rocket"></i></a>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" data-page="home">Edu<span>Verse</span></a>
+          <p>Empowering learners worldwide with innovative education, cutting-edge technology, and personalized learning paths for a brighter future.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#" data-page="home">Home</a></li>
+            <li><a href="#" data-page="about">About Us</a></li>
+            <li><a href="#" data-page="courses">Courses</a></li>
+            <li><a href="#" data-page="career">Career Guidance</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#" data-page="meetings">Meetings</a></li>
+            <li><a href="#" data-page="resume">Resume Builder</a></li>
+            <li><a href="#" data-page="dossier">Dossier</a></li>
+            <li><a href="#" data-page="profile">Profile</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul class="footer-contact">
+            <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fas fa-envelope"></i> contact@eduverse.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> Hyderabad, India</li>
+            <li><i class="fas fa-globe"></i> www.eduverse.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 EduVerse. All Rights Reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Chatbot ========== -->
+  <button class="chatbot-btn" id="chatbotBtn" aria-label="Open chat"><i class="fas fa-robot"></i></button>
+  <div class="chatbot-panel" id="chatbotPanel">
+    <div class="chatbot-header">
+      <h4><i class="fas fa-robot"></i> &nbsp;EduBot</h4>
+      <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-msg bot">👋 Hi! I'm EduBot. How can I help you today? Ask me about courses, meetings, career guidance, or anything else!</div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatInput" placeholder="Type a message...">
+      <button id="chatSend">Send</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+      }, 1200);
+    });
+    // Hash routing support
+    function checkHash() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && typeof navigateTo === 'function') navigateTo(hash);
+    }
+    window.addEventListener('hashchange', checkHash);
+    window.addEventListener('load', () => setTimeout(checkHash, 1300));
+  </script>
+</body>
+</html>

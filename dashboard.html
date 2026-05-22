@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduVerse Student Dashboard - Track your progress, manage courses, and view your achievements.">
+  <title>EduVerse — Student Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6c5ce7; --primary-light: #a29bfe; --primary-dark: #4a3dc7;
+      --accent: #00cec9; --accent-light: #55efc4;
+      --gold: #f9ca24; --gold-dark: #e0a800;
+      --bg-dark: #0a0a1a; --bg-sidebar: #0f0f25; --bg-main: #f4f5fb;
+      --text-dark: #1a1a2e; --text-muted: #8892b0; --text-body: #4a4a6a;
+      --gradient-primary: linear-gradient(135deg, #6c5ce7, #00cec9);
+      --gradient-warm: linear-gradient(135deg, #f9ca24, #f0932b);
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.1);
+      --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-dark); display: flex; min-height: 100vh; }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Outfit', sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px; background: var(--bg-sidebar); color: #fff; padding: 0;
+      display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0;
+      z-index: 100; transition: var(--transition);
+    }
+    .sidebar-logo {
+      padding: 24px 28px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800;
+      background: var(--gradient-primary); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; border-bottom: 1px solid rgba(108,92,231,0.15);
+    }
+    .sidebar-logo span { -webkit-text-fill-color: var(--accent); }
+    .sidebar-nav { flex: 1; padding: 16px 12px; overflow-y: auto; }
+    .sidebar-nav .nav-section { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); padding: 16px 16px 8px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+      border-radius: var(--radius-sm); color: rgba(255,255,255,0.6);
+      font-size: 0.9rem; font-weight: 500; transition: var(--transition); margin-bottom: 2px;
+    }
+    .sidebar-nav a:hover { background: rgba(108,92,231,0.1); color: #fff; }
+    .sidebar-nav a.active { background: rgba(108,92,231,0.2); color: #fff; }
+    .sidebar-nav a.active::before {
+      content: ''; width: 3px; height: 24px; background: var(--gradient-primary);
+      border-radius: 2px; position: absolute; left: 0;
+    }
+    .sidebar-nav a i { width: 20px; text-align: center; font-size: 1rem; }
+    .sidebar-user {
+      padding: 20px; border-top: 1px solid rgba(108,92,231,0.15);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sidebar-avatar {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-primary);
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;
+    }
+    .sidebar-user-info h4 { font-size: 0.9rem; font-weight: 600; }
+    .sidebar-user-info p { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Main */
+    .main { margin-left: 260px; flex: 1; padding: 0; min-height: 100vh; }
+
+    /* Top Bar */
+    .topbar {
+      background: #fff; padding: 16px 32px; display: flex; justify-content: space-between;
+      align-items: center; border-bottom: 1px solid rgba(108,92,231,0.06);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-left h1 { font-size: 1.4rem; font-weight: 700; }
+    .topbar-left p { font-size: 0.85rem; color: var(--text-muted); }
+    .topbar-right { display: flex; align-items: center; gap: 16px; }
+    .topbar-search {
+      position: relative;
+    }
+    .topbar-search input {
+      padding: 10px 16px 10px 40px; border: 2px solid rgba(108,92,231,0.1);
+      border-radius: 50px; font-size: 0.9rem; width: 280px; background: var(--bg-main);
+      font-family: 'Inter', sans-serif; transition: var(--transition);
+    }
+    .topbar-search input:focus { outline: none; border-color: var(--primary); }
+    .topbar-search i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+    .topbar-icon {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--bg-main);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      position: relative; transition: var(--transition); border: none; font-size: 1rem; color: var(--text-body);
+    }
+    .topbar-icon:hover { background: rgba(108,92,231,0.1); }
+    .topbar-icon .badge {
+      position: absolute; top: 4px; right: 4px; width: 8px; height: 8px;
+      background: #ff6b6b; border-radius: 50%; border: 2px solid #fff;
+    }
+
+    /* Content */
+    .content { padding: 32px; }
+
+    /* Stats Cards */
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+    .stat-card {
+      background: #fff; border-radius: var(--radius-md); padding: 24px;
+      border: 1px solid rgba(108,92,231,0.06); transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .stat-card::after {
+      content: ''; position: absolute; top: 0; right: 0; width: 100px; height: 100px;
+      border-radius: 50%; opacity: 0.06; transform: translate(30px, -30px);
+    }
+    .stat-card:nth-child(1)::after { background: var(--primary); }
+    .stat-card:nth-child(2)::after { background: var(--accent); }
+    .stat-card:nth-child(3)::after { background: var(--gold); }
+    .stat-card:nth-child(4)::after { background: #ff6b6b; }
+    .stat-card .stat-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 16px;
+    }
+    .stat-card:nth-child(1) .stat-icon { background: rgba(108,92,231,0.1); color: var(--primary); }
+    .stat-card:nth-child(2) .stat-icon { background: rgba(0,206,201,0.1); color: var(--accent); }
+    .stat-card:nth-child(3) .stat-icon { background: rgba(249,202,36,0.1); color: var(--gold-dark); }
+    .stat-card:nth-child(4) .stat-icon { background: rgba(255,107,107,0.1); color: #ff6b6b; }
+    .stat-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; }
+    .stat-card p { font-size: 0.85rem; color: var(--text-muted); }
+    .stat-card .stat-trend {
+      display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem;
+      font-weight: 600; margin-top: 8px; padding: 3px 8px; border-radius: 50px;
+    }
+    .stat-trend.up { background: rgba(85,239,196,0.1); color: #00b894; }
+    .stat-trend.down { background: rgba(255,107,107,0.1); color: #ff6b6b; }
+
+    /* Grid Layout */
+    .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 32px; }
+
+    /* Panel */
+    .panel {
+      background: #fff; border-radius: var(--radius-md); padding: 24px;
+      border: 1px solid rgba(108,92,231,0.06);
+    }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .panel-header h3 { font-size: 1.1rem; font-weight: 700; }
+    .panel-header a { font-size: 0.85rem; color: var(--primary); font-weight: 500; }
+
+    /* Course Progress Cards */
+    .progress-card {
+      display: flex; gap: 16px; padding: 16px; border-radius: var(--radius-sm);
+      border: 1px solid rgba(108,92,231,0.06); margin-bottom: 12px; transition: var(--transition);
+    }
+    .progress-card:hover { background: rgba(108,92,231,0.02); }
+    .progress-card-icon {
+      width: 50px; height: 50px; border-radius: 12px; display: flex;
+      align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+    }
+    .progress-card-info { flex: 1; }
+    .progress-card-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .progress-card-info p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+    .progress-track { height: 6px; background: rgba(108,92,231,0.08); border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 3px; background: var(--gradient-primary); transition: width 1.5s ease; }
+    .progress-card-percent { font-size: 0.85rem; font-weight: 700; color: var(--primary); align-self: center; }
+
+    /* Schedule */
+    .schedule-item {
+      display: flex; gap: 14px; padding: 14px 0;
+      border-bottom: 1px solid rgba(108,92,231,0.06);
+    }
+    .schedule-item:last-child { border-bottom: none; }
+    .schedule-time {
+      min-width: 55px; text-align: center;
+    }
+    .schedule-time .time { font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+    .schedule-time .period { font-size: 0.7rem; color: var(--text-muted); }
+    .schedule-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
+    .schedule-info p { font-size: 0.8rem; color: var(--text-muted); }
+    .schedule-dot {
+      width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;
+    }
+
+    /* Activity */
+    .activity-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(108,92,231,0.06); }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-icon {
+      width: 36px; height: 36px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0;
+    }
+    .activity-info h4 { font-size: 0.88rem; font-weight: 500; }
+    .activity-info p { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Certificates */
+    .cert-card {
+      display: flex; gap: 16px; align-items: center; padding: 14px;
+      border-radius: var(--radius-sm); border: 1px solid rgba(108,92,231,0.06);
+      margin-bottom: 10px; transition: var(--transition);
+    }
+    .cert-card:hover { background: rgba(108,92,231,0.02); }
+    .cert-icon { font-size: 2rem; }
+    .cert-info h4 { font-size: 0.9rem; font-weight: 600; }
+    .cert-info p { font-size: 0.8rem; color: var(--text-muted); }
+    .cert-badge {
+      margin-left: auto; padding: 4px 12px; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 600; background: rgba(85,239,196,0.1); color: #00b894;
+    }
+
+    /* Chart placeholder */
+    .chart-area {
+      height: 200px; background: linear-gradient(to top, rgba(108,92,231,0.05), rgba(0,206,201,0.02));
+      border-radius: var(--radius-sm); display: flex; align-items: flex-end;
+      gap: 8px; padding: 16px 12px 12px; position: relative;
+    }
+    .chart-bar {
+      flex: 1; border-radius: 6px 6px 0 0; background: var(--gradient-primary);
+      transition: height 1s ease; min-height: 10px; position: relative;
+    }
+    .chart-bar:hover { opacity: 0.85; }
+    .chart-bar::after {
+      content: attr(data-label); position: absolute; bottom: -22px; left: 50%;
+      transform: translateX(-50%); font-size: 0.65rem; color: var(--text-muted); white-space: nowrap;
+    }
+    .chart-labels { display: flex; justify-content: space-around; padding-top: 28px; }
+
+    /* Logout */
+    .logout-btn {
+      display: flex; align-items: center; gap: 10px; padding: 12px 16px; margin: 8px 12px;
+      border-radius: var(--radius-sm); color: rgba(255,255,255,0.5);
+      font-size: 0.9rem; cursor: pointer; transition: var(--transition); border: none;
+      background: none; width: calc(100% - 24px); text-align: left; font-family: 'Inter', sans-serif;
+    }
+    .logout-btn:hover { background: rgba(255,107,107,0.15); color: #ff6b6b; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .dashboard-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .topbar-search { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <a href="index.html" class="sidebar-logo">Edu<span>Verse</span></a>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <a href="#" class="active"><i class="fas fa-th-large"></i> Dashboard</a>
+      <a href="index.html" data-page="courses"><i class="fas fa-book-open"></i> My Courses</a>
+      <a href="index.html" data-page="meetings"><i class="fas fa-calendar-alt"></i> Meetings</a>
+      <a href="index.html" data-page="career"><i class="fas fa-route"></i> Career Path</a>
+      <div class="nav-section">Tools</div>
+      <a href="index.html" data-page="resume"><i class="fas fa-file-alt"></i> Resume Builder</a>
+      <a href="index.html" data-page="dossier"><i class="fas fa-chart-bar"></i> Dossier</a>
+      <div class="nav-section">Account</div>
+      <a href="index.html" data-page="profile"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="#"><i class="fas fa-cog"></i> Settings</a>
+    </nav>
+    <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">BP</div>
+      <div class="sidebar-user-info">
+        <h4 id="dash-user-name">Bhanu Prakash</h4>
+        <p>CS Student</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Top Bar -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1>Dashboard</h1>
+        <p>Welcome back! Here's your learning summary.</p>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search courses, topics...">
+        </div>
+        <button class="topbar-icon"><i class="fas fa-bell"></i><span class="badge"></span></button>
+        <button class="topbar-icon"><i class="fas fa-envelope"></i></button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+          <h3>5</h3><p>Enrolled Courses</p>
+          <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +2 this month</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-clock"></i></div>
+          <h3>48h</h3><p>Learning Hours</p>
+          <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +12h this week</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+          <h3>3</h3><p>Certificates Earned</p>
+          <span class="stat-trend up"><i class="fas fa-arrow-up"></i> +1 recently</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-fire"></i></div>
+          <h3>14</h3><p>Day Streak</p>
+          <span class="stat-trend up"><i class="fas fa-arrow-up"></i> Keep going!</span>
+        </div>
+      </div>
+
+      <!-- Grid: Progress + Schedule -->
+      <div class="dashboard-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Course Progress</h3>
+            <a href="index.html">View All</a>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-icon" style="background:rgba(108,92,231,0.1);color:var(--primary);"><i class="fas fa-code"></i></div>
+            <div class="progress-card-info">
+              <h4>Full Stack Web Development</h4>
+              <p>12 of 24 modules completed</p>
+              <div class="progress-track"><div class="progress-fill" style="width:50%"></div></div>
+            </div>
+            <div class="progress-card-percent">50%</div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-icon" style="background:rgba(0,206,201,0.1);color:var(--accent);"><i class="fas fa-brain"></i></div>
+            <div class="progress-card-info">
+              <h4>Data Science & ML</h4>
+              <p>18 of 30 modules completed</p>
+              <div class="progress-track"><div class="progress-fill" style="width:60%"></div></div>
+            </div>
+            <div class="progress-card-percent">60%</div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-icon" style="background:rgba(249,202,36,0.1);color:var(--gold-dark);"><i class="fas fa-mobile-alt"></i></div>
+            <div class="progress-card-info">
+              <h4>Mobile App Development</h4>
+              <p>6 of 20 modules completed</p>
+              <div class="progress-track"><div class="progress-fill" style="width:30%"></div></div>
+            </div>
+            <div class="progress-card-percent">30%</div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-icon" style="background:rgba(255,107,107,0.1);color:#ff6b6b;"><i class="fas fa-shield-alt"></i></div>
+            <div class="progress-card-info">
+              <h4>Cybersecurity Fundamentals</h4>
+              <p>15 of 18 modules completed</p>
+              <div class="progress-track"><div class="progress-fill" style="width:83%"></div></div>
+            </div>
+            <div class="progress-card-percent">83%</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Today's Schedule</h3>
+            <a href="index.html">Full Calendar</a>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time"><div class="time">9:00</div><div class="period">AM</div></div>
+            <div class="schedule-dot" style="background:var(--primary);"></div>
+            <div class="schedule-info"><h4>Web Dev Live Session</h4><p>React Hooks & Context API</p></div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time"><div class="time">11:30</div><div class="period">AM</div></div>
+            <div class="schedule-dot" style="background:var(--accent);"></div>
+            <div class="schedule-info"><h4>ML Workshop</h4><p>Neural Networks Fundamentals</p></div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time"><div class="time">2:00</div><div class="period">PM</div></div>
+            <div class="schedule-dot" style="background:var(--gold);"></div>
+            <div class="schedule-info"><h4>Group Project Meeting</h4><p>E-commerce app sprint review</p></div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time"><div class="time">4:30</div><div class="period">PM</div></div>
+            <div class="schedule-dot" style="background:#ff6b6b;"></div>
+            <div class="schedule-info"><h4>Career Mentoring</h4><p>1-on-1 with Sarah Chen</p></div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time"><div class="time">6:00</div><div class="period">PM</div></div>
+            <div class="schedule-dot" style="background:var(--primary-light);"></div>
+            <div class="schedule-info"><h4>Cyber Security Quiz</h4><p>Module 15 assessment</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid: Chart + Activity -->
+      <div class="dashboard-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Weekly Study Hours</h3>
+            <a href="#">This Week</a>
+          </div>
+          <div class="chart-area" id="weeklyChart">
+            <div class="chart-bar" style="height:40%;" data-label="Mon"></div>
+            <div class="chart-bar" style="height:65%;" data-label="Tue"></div>
+            <div class="chart-bar" style="height:50%;" data-label="Wed"></div>
+            <div class="chart-bar" style="height:80%;" data-label="Thu"></div>
+            <div class="chart-bar" style="height:45%;" data-label="Fri"></div>
+            <div class="chart-bar" style="height:90%;" data-label="Sat"></div>
+            <div class="chart-bar" style="height:70%;" data-label="Sun"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Recent Activity</h3>
+            <a href="#">View All</a>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon" style="background:rgba(85,239,196,0.1);color:#00b894;"><i class="fas fa-check"></i></div>
+            <div class="activity-info"><h4>Completed Module 12 — React Hooks</h4><p>2 hours ago</p></div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon" style="background:rgba(108,92,231,0.1);color:var(--primary);"><i class="fas fa-star"></i></div>
+            <div class="activity-info"><h4>Earned "Python Pro" certificate</h4><p>Yesterday</p></div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon" style="background:rgba(249,202,36,0.1);color:var(--gold-dark);"><i class="fas fa-fire"></i></div>
+            <div class="activity-info"><h4>14-day learning streak achieved</h4><p>Today</p></div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon" style="background:rgba(0,206,201,0.1);color:var(--accent);"><i class="fas fa-users"></i></div>
+            <div class="activity-info"><h4>Joined AI Workshop group</h4><p>2 days ago</p></div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon" style="background:rgba(255,107,107,0.1);color:#ff6b6b;"><i class="fas fa-clipboard-check"></i></div>
+            <div class="activity-info"><h4>Scored 92% on ML Quiz</h4><p>3 days ago</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="panel" style="margin-bottom:32px;">
+        <div class="panel-header">
+          <h3>Certificates</h3>
+          <a href="#">View All</a>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🎖️</div>
+          <div class="cert-info"><h4>Python Programming Fundamentals</h4><p>Completed on May 2, 2026</p></div>
+          <span class="cert-badge">Verified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🏆</div>
+          <div class="cert-info"><h4>HTML & CSS Mastery</h4><p>Completed on April 18, 2026</p></div>
+          <span class="cert-badge">Verified</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🥇</div>
+          <div class="cert-info"><h4>Git & GitHub Essentials</h4><p>Completed on March 10, 2026</p></div>
+          <span class="cert-badge">Verified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Load user data
+    const user = JSON.parse(localStorage.getItem('eduverse_user') || '{}');
+    if (user.name) {
+      document.getElementById('dash-user-name').textContent = user.name;
+    }
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('eduverse_user');
+      window.location.href = 'login.html';
+    });
+
+    // Animate progress bars on load
+    document.querySelectorAll('.progress-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => { bar.style.width = w; }, 300);
+    });
+
+    // Animate chart bars
+    document.querySelectorAll('.chart-bar').forEach(bar => {
+      const h = bar.style.height;
+      bar.style.height = '0';
+      setTimeout(() => { bar.style.height = h; }, 500);
+    });
+
+    // Sidebar links to main site pages
+    document.querySelectorAll('.sidebar-nav a[data-page]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = a.dataset.page;
+        window.location.href = `index.html#${page}`;
+      });
+    });
+  </script>
+</body>
+</html>
