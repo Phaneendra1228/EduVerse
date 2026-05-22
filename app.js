@@ -157,8 +157,8 @@ function renderCourses(data) {
           <div class="course-instructor-info"><h4>${c.instructor}</h4><p>${c.role}</p></div>
         </div>
         <div class="course-btns">
-          <button class="btn btn-primary">Enroll Now</button>
-          <button class="btn btn-secondary">Take Test</button>
+          <button class="btn btn-primary" onclick="window.location.href='login.html'">Enroll Now</button>
+          <button class="btn btn-secondary" onclick="alert('Demo Feature: This would open a test window.')">Take Test</button>
         </div>
       </div>
     </div>
