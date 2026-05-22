@@ -955,7 +955,7 @@
             <div class="input-group" id="nameGroup">
               <label for="fullName">Full Name</label>
               <div class="input-field-wrap">
-                <input type="text" id="fullName" placeholder="Bhanu Prakash" autocomplete="name">
+                <input type="text" id="fullName" placeholder="Phaneendra" autocomplete="name">
                 <i class="fas fa-user field-icon"></i>
                 <i class="fas fa-check-circle input-success-icon"></i>
               </div>
@@ -1253,7 +1253,7 @@
 
         const userName = currentMode === 'signup'
           ? document.getElementById('fullName').value.trim()
-          : 'Bhanu Prakash';
+          : 'Phaneendra';
 
         // Store user data
         localStorage.setItem('eduverse_user', JSON.stringify({
@@ -1290,7 +1290,7 @@
         submitBtn.classList.remove('loading');
 
         localStorage.setItem('eduverse_user', JSON.stringify({
-          name: 'Bhanu Prakash',
+          name: 'Phaneendra',
           email: `user@${provider.toLowerCase()}.com`,
           loggedIn: true
         }));
