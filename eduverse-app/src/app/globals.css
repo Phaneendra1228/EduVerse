@@ -91,6 +91,13 @@ ul { list-style: none; }
 }
 .btn-white:hover { transform: translateY(-2px); }
 
+/* Global Smooth Interaction Feedback */
+a:active, button:active, .btn:active, .nav-action-link:active, .nav-links > a:active, .nav-bell-btn:active {
+  transform: scale(0.95) !important;
+  transition: transform 0.05s cubic-bezier(0.2, 0, 0, 1) !important;
+  opacity: 0.8;
+}
+
 /* ========== Top Bar ========== */
 .top-bar {
   background: var(--bg-dark); padding: 8px 0;
