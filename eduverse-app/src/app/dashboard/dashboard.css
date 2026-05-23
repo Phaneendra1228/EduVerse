@@ -283,4 +283,48 @@
     @media (max-width: 480px) {
       .topbar-dropdown { position: fixed; top: 70px; left: 16px; right: 16px; width: auto; max-height: calc(100vh - 100px); }
     }
-  
+    
+    /* ========== Dark Mode ========== */
+    body.dark-theme .dashboard-body {
+      background: #0a0a1a;
+      color: #fff;
+    }
+    body.dark-theme .sidebar {
+      background: #111126;
+      border-right-color: rgba(255,255,255,0.05);
+    }
+    body.dark-theme .sidebar-nav .nav-section { color: #8892b0; }
+    body.dark-theme .sidebar-nav a {
+      color: #a0aec0;
+    }
+    body.dark-theme .sidebar-nav a:hover, body.dark-theme .sidebar-nav a.active {
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+    }
+    body.dark-theme .sidebar-logo { border-bottom-color: rgba(255,255,255,0.05); }
+    body.dark-theme .sidebar-bottom, body.dark-theme .sidebar-user, body.dark-theme .topbar {
+      background: #111126 !important;
+      border-color: rgba(255,255,255,0.05) !important;
+    }
+    body.dark-theme .topbar-left h1, body.dark-theme .sidebar-user-info h4 {
+      color: #fff;
+    }
+    body.dark-theme .stat-card, body.dark-theme .panel {
+      background: #111126;
+      border-color: rgba(255,255,255,0.05);
+    }
+    body.dark-theme .stat-card h3, body.dark-theme .panel-header h3, body.dark-theme .schedule-info h4 {
+      color: #fff;
+    }
+    body.dark-theme .topbar-search input {
+      background: #0a0a1a;
+      border-color: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    body.dark-theme .topbar-icon {
+      background: #0a0a1a;
+      color: #fff;
+    }
+    body.dark-theme .schedule-item {
+      border-color: rgba(255,255,255,0.05);
+    }
