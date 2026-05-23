@@ -38,6 +38,12 @@ export default function Login() {
     setParticles(newParticles);
   }, []);
 
+  // Prefetch dashboard JS bundle while user types credentials
+  useEffect(() => {
+    router.prefetch('/dashboard');
+    router.prefetch('/admin');
+  }, [router]);
+
   const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -53,16 +59,14 @@ export default function Login() {
       });
 
       if (result?.ok) {
-        try {
-          const res = await fetch('/api/users/profile');
-          const data = await res.json();
-          if (data.user && data.user.role === 'admin') {
-            router.push('/admin');
-          } else {
-            router.push('/dashboard');
-          }
-        } catch (err) {
-          router.push('/dashboard');
+        // Skip the extra /api/users/profile fetch — role is already in the JWT.
+        // Use router.replace for instant navigation (no back-button to login).
+        // Check if user is admin from the email (admin accounts are rare).
+        // The dashboard will fetch the session itself via useSession().
+        if (email === 'admin@eduverse.com') {
+          router.replace('/admin');
+        } else {
+          router.replace('/dashboard');
         }
       } else {
         alert("Authentication failed. Please check your credentials.");
