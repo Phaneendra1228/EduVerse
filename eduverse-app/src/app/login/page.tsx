@@ -286,7 +286,7 @@ export default function Login() {
               <button
                 type="button"
                 className="social-btn"
-                onClick={() => alert("Google Login")}
+                onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
               >
                 <span className="social-icon google">
                   <i className="fab fa-google"></i>
@@ -296,7 +296,7 @@ export default function Login() {
               <button
                 type="button"
                 className="social-btn"
-                onClick={() => alert("GitHub Login")}
+                onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
               >
                 <span className="social-icon github">
                   <i className="fab fa-github"></i>
