@@ -109,7 +109,7 @@ export default function AdminAnalyticsPage() {
                 <Tooltip
                   contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'white' }}
                   labelStyle={{ color: '#a0aec0' }}
-                  formatter={(value: number) => [`$${value.toLocaleString()}`, 'Revenue']}
+                  formatter={(value: any) => [`$${Number(value).toLocaleString()}`, 'Revenue']}
                 />
                 <Area type="monotone" dataKey="revenue" stroke="#6c5ce7" strokeWidth={3} fillOpacity={1} fill="url(#colorRevenue)" />
               </AreaChart>
@@ -139,7 +139,7 @@ export default function AdminAnalyticsPage() {
                 </Pie>
                 <Tooltip
                   contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'white' }}
-                  formatter={(value: number, name: string) => [`${value}%`, name]}
+                  formatter={(value: any, name: any) => [`${value}%`, name]}
                 />
                 <Legend iconType="circle" wrapperStyle={{ color: '#a0aec0', fontSize: '0.85rem' }} />
               </PieChart>
