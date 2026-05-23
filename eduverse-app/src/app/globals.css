@@ -277,6 +277,7 @@ a:active, button:active, .btn:active, .nav-action-link:active, .nav-links > a:ac
   position: relative; min-height: 92vh;
   background: var(--gradient-hero);
   display: flex; align-items: center;
+  padding: 80px 0;
   overflow: hidden;
 }
 .hero-particles {
