@@ -63,47 +63,48 @@ export default function AdminCourseCreation() {
   };
 
   return (
-    <div style={{ backgroundColor: '#f3f4f6', minHeight: '100vh', padding: '120px 20px 80px' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto', background: 'white', padding: '40px', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
+    <div style={{ padding: '0' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto', background: 'rgba(255, 255, 255, 0.03)', padding: '40px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.05)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
         
-        <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#4a4a6a', textDecoration: 'none', marginBottom: '24px', fontWeight: 600 }}>
+        <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#a0aec0', textDecoration: 'none', marginBottom: '24px', fontWeight: 600, transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = 'white'} onMouseLeave={(e) => e.currentTarget.style.color = '#a0aec0'}>
           <i className="fas fa-arrow-left"></i> Back to Dashboard
         </Link>
 
-        <h1 style={{ fontFamily: 'Outfit, sans-serif', color: '#1a1a2e', fontSize: '2.5rem', marginBottom: '8px' }}>Create New Course</h1>
-        <p style={{ color: '#8892b0', marginBottom: '32px' }}>Publish a new premium course directly to the catalog.</p>
+        <h1 style={{ fontFamily: 'Outfit, sans-serif', color: 'white', fontSize: '2.5rem', margin: '0 0 8px 0' }}>Create New Course</h1>
+        <p style={{ color: '#a0aec0', margin: '0 0 32px 0' }}>Publish a new premium course directly to the catalog.</p>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#1a1a2e' }}>Course Title *</label>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>Course Title *</label>
             <input 
               type="text" 
               name="title" 
               required 
               value={formData.title} 
               onChange={handleChange}
-              style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid #d0d0e0', fontSize: '1rem', background: '#f8f9fa' }}
+              className="admin-input"
               placeholder="e.g. Master Next.js 14"
             />
           </div>
 
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#1a1a2e' }}>Course Description *</label>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>Course Description *</label>
             <textarea 
               name="description" 
               required 
               rows={4}
               value={formData.description} 
               onChange={handleChange}
-              style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid #d0d0e0', fontSize: '1rem', background: '#f8f9fa', resize: 'vertical' }}
+              className="admin-input"
+              style={{ resize: 'vertical' }}
               placeholder="Detailed description of what students will learn..."
             ></textarea>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
             <div>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#1a1a2e' }}>Price ($) *</label>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>Price ($) *</label>
               <input 
                 type="number" 
                 name="price" 
@@ -112,41 +113,41 @@ export default function AdminCourseCreation() {
                 step="0.01"
                 value={formData.price} 
                 onChange={handleChange}
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid #d0d0e0', fontSize: '1rem', background: '#f8f9fa' }}
+                className="admin-input"
                 placeholder="99.99"
               />
             </div>
             <div>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#1a1a2e' }}>Category / Tag *</label>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>Category / Tag *</label>
               <select 
                 name="tag" 
                 value={formData.tag} 
                 onChange={handleChange}
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid #d0d0e0', fontSize: '1rem', background: '#f8f9fa' }}
+                className="admin-input"
               >
-                <option value="Web Development">Web Development</option>
-                <option value="Data Science">Data Science</option>
-                <option value="UI/UX Design">UI/UX Design</option>
-                <option value="Mobile Development">Mobile Development</option>
-                <option value="Digital Marketing">Digital Marketing</option>
+                <option style={{ background: '#111126' }} value="Web Development">Web Development</option>
+                <option style={{ background: '#111126' }} value="Data Science">Data Science</option>
+                <option style={{ background: '#111126' }} value="UI/UX Design">UI/UX Design</option>
+                <option style={{ background: '#111126' }} value="Mobile Development">Mobile Development</option>
+                <option style={{ background: '#111126' }} value="Digital Marketing">Digital Marketing</option>
               </select>
             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
             <div>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#1a1a2e' }}>Total Hours</label>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>Total Hours</label>
               <input 
                 type="number" 
                 name="hours" 
                 min="1"
                 value={formData.hours} 
                 onChange={handleChange}
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid #d0d0e0', fontSize: '1rem', background: '#f8f9fa' }}
+                className="admin-input"
               />
             </div>
             <div>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#1a1a2e' }}>Initial Rating</label>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>Initial Rating</label>
               <input 
                 type="number" 
                 name="rating" 
@@ -155,38 +156,38 @@ export default function AdminCourseCreation() {
                 step="0.1"
                 value={formData.rating} 
                 onChange={handleChange}
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid #d0d0e0', fontSize: '1rem', background: '#f8f9fa' }}
+                className="admin-input"
               />
             </div>
           </div>
 
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#1a1a2e' }}>Cover Image Template</label>
-            <select 
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>Cover Image URL</label>
+            <input 
+              type="text" 
               name="image" 
               value={formData.image} 
               onChange={handleChange}
-              style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid #d0d0e0', fontSize: '1rem', background: '#f8f9fa' }}
-            >
-              <option value="/images/course1.jpg">Template 1 (Purple Code)</option>
-              <option value="/images/course2.jpg">Template 2 (Blue Graph)</option>
-              <option value="/images/course3.jpg">Template 3 (Gold Design)</option>
-            </select>
+              className="admin-input"
+              placeholder="/images/course.jpg"
+            />
           </div>
 
           <button 
             type="submit" 
             disabled={loading}
             style={{ 
-              marginTop: '16px',
-              background: 'var(--primary)', 
+              marginTop: '16px', 
+              padding: '16px', 
+              background: loading ? '#a0aec0' : 'linear-gradient(to right, #6c5ce7, #00cec9)', 
               color: 'white', 
               border: 'none', 
-              padding: '16px', 
               borderRadius: '8px', 
-              fontSize: '1.1rem',
+              fontSize: '1.1rem', 
               fontWeight: 'bold', 
               cursor: loading ? 'not-allowed' : 'pointer',
+              transition: 'all 0.2s',
+              boxShadow: '0 4px 15px rgba(108, 92, 231, 0.4)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
