@@ -59,14 +59,12 @@ export default function Login() {
       });
 
       if (result?.ok) {
-        // Skip the extra /api/users/profile fetch — role is already in the JWT.
-        // Use router.replace for instant navigation (no back-button to login).
-        // Check if user is admin from the email (admin accounts are rare).
-        // The dashboard will fetch the session itself via useSession().
+        // Hard navigation is faster than client-side routing for post-login redirect.
+        // No need for extra API calls — role is in the JWT, dashboard reads it via useSession().
         if (email === 'admin@eduverse.com') {
-          router.replace('/admin');
+          window.location.href = '/admin';
         } else {
-          router.replace('/dashboard');
+          window.location.href = '/dashboard';
         }
       } else {
         alert("Authentication failed. Please check your credentials.");
