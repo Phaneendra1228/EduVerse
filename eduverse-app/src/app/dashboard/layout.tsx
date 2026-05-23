@@ -135,7 +135,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               )}
             </div>
 
-            <button className="hamburger-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={{ display: 'none' }}><i className="fas fa-bars"></i></button>
+            <button className="hamburger-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}><i className="fas fa-bars"></i></button>
           </div>
         </div>
 

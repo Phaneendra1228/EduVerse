@@ -425,17 +425,98 @@
     justify-content: center;
 }
 
-/* Responsive */
+/* ========== Responsive ========== */
+@media (max-width: 1024px) {
+    .course-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .detail-sidebar {
+        position: static;
+    }
+}
+
 @media (max-width: 992px) {
     .course-detail-hero {
         padding: 80px 0 40px;
     }
-    
     .course-title {
         font-size: 2.2rem;
     }
-    
     .video-player {
         height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .course-detail-hero {
+        padding: 60px 0 32px;
+    }
+    .course-title {
+        font-size: 1.8rem;
+    }
+    .course-subtitle {
+        font-size: 1rem;
+    }
+    .course-stats {
+        gap: 12px;
+    }
+    .stat-item {
+        font-size: 0.85rem;
+        padding: 4px 10px;
+    }
+    .course-detail-content {
+        padding: 40px 0;
+    }
+    .video-player {
+        height: 240px;
+    }
+    .video-info {
+        padding: 16px;
+    }
+    .course-tabs {
+        border-radius: 12px;
+    }
+    .tab-btn {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+    .tab-content {
+        padding: 24px 16px;
+    }
+    .course-features {
+        grid-template-columns: 1fr;
+    }
+    .detail-sidebar {
+        padding: 24px 16px;
+    }
+    .course-price {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-title {
+        font-size: 1.5rem;
+    }
+    .video-player {
+        height: 200px;
+    }
+    .instructor-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .review-item {
+        padding: 16px;
+    }
+    .reviewer-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .module-item {
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

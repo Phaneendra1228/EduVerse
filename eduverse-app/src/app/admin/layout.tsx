@@ -9,29 +9,36 @@ import './admin.css';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
 
   const isActive = (path: string) => pathname === path ? 'active' : '';
 
   return (
     <div className="admin-layout">
+      {/* Sidebar Overlay for mobile */}
+      {isSidebarOpen && <div className="admin-sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>}
+      
       {/* Sidebar */}
-      <aside className="admin-sidebar">
+      <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-header">
           <Link href="/" className="admin-logo">
             <i className="fas fa-graduation-cap"></i>
             <span className="admin-logo-text">EduVerse</span>
             <span className="admin-badge">ADMIN</span>
           </Link>
+          <button className="admin-mobile-close" onClick={() => setIsSidebarOpen(false)}>
+            <i className="fas fa-times"></i>
+          </button>
         </div>
         
         <nav className="admin-nav">
-          <Link href="/admin" className={`admin-nav-link ${isActive('/admin')}`}>
+          <Link href="/admin" className={`admin-nav-link ${isActive('/admin')}`} onClick={() => setIsSidebarOpen(false)}>
             <i className="fas fa-chart-pie"></i> Dashboard
           </Link>
-          <Link href="/admin/courses" className={`admin-nav-link ${isActive('/admin/courses')}`}>
+          <Link href="/admin/courses" className={`admin-nav-link ${isActive('/admin/courses')}`} onClick={() => setIsSidebarOpen(false)}>
             <i className="fas fa-book"></i> Manage Courses
           </Link>
-          <Link href="/admin/users" className={`admin-nav-link ${isActive('/admin/users')}`}>
+          <Link href="/admin/users" className={`admin-nav-link ${isActive('/admin/users')}`} onClick={() => setIsSidebarOpen(false)}>
             <i className="fas fa-users"></i> Manage Users
           </Link>
         </nav>
@@ -47,7 +54,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <main className="admin-main">
         {/* Topbar */}
         <header className="admin-topbar">
-          <h2>Admin Portal</h2>
+          <div className="admin-topbar-left">
+            <button className="admin-hamburger" onClick={() => setIsSidebarOpen(true)}>
+              <i className="fas fa-bars"></i>
+            </button>
+            <h2>Admin Portal</h2>
+          </div>
           <div className="admin-topbar-actions">
             <button className="admin-icon-btn">
               <i className="fas fa-bell"></i>
