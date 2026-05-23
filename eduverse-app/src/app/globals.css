@@ -1187,3 +1187,20 @@ a:active, button:active, .btn:active, .nav-action-link:active, .nav-links > a:ac
   .accordion-header { min-height: 52px; }
   .course-btns .btn { min-height: 48px; }
 }
+
+/* ========== Page Transitions ========== */
+@keyframes pageFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition-wrapper {
+  animation: pageFadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
