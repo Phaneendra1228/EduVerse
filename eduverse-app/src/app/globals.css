@@ -923,12 +923,19 @@ ul { list-style: none; }
     width: 100%;
     border-radius: 10px;
   }
+  .nav-notif-container {
+    width: 100%;
+  }
   .nav-bell-btn {
     padding: 14px 16px !important;
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     width: 100%;
     justify-content: flex-start;
     border-radius: 10px;
+    color: #a0aec0 !important;
+  }
+  .nav-bell-btn.accent {
+    color: var(--accent) !important;
   }
   .nav-bell-btn::after {
     content: ' Notifications';
@@ -936,6 +943,10 @@ ul { list-style: none; }
     margin-left: 10px;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
+  }
+  .nav-bell-badge {
+    top: -4px;
+    right: -8px;
   }
   .notif-dropdown {
     position: fixed;

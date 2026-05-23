@@ -88,14 +88,16 @@ export default function Navbar() {
                   <button 
                     onClick={() => setShowNotifs(!showNotifs)} 
                     aria-label="Notifications"
-                    className="nav-bell-btn"
+                    className="nav-bell-btn accent"
                   >
-                    <i className="fas fa-bell"></i>
-                    {unreadCount > 0 && (
-                      <span className="nav-bell-badge">
-                        {unreadCount}
-                      </span>
-                    )}
+                    <span style={{ position: 'relative', display: 'inline-flex' }}>
+                      <i className="fas fa-bell"></i>
+                      {unreadCount > 0 && (
+                        <span className="nav-bell-badge">
+                          {unreadCount}
+                        </span>
+                      )}
+                    </span>
                   </button>
 
                   {/* Dropdown Menu */}
