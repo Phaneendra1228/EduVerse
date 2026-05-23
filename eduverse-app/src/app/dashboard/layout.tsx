@@ -40,9 +40,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="nav-section">Tools</div>
           <Link href="/resume"><i className="fas fa-file-alt"></i> Resume Builder</Link>
           <Link href="/dossier"><i className="fas fa-chart-bar"></i> Dossier</Link>
+          <Link href="/certificates"><i className="fas fa-certificate"></i> My Certificates</Link>
           <div className="nav-section">Account</div>
           <Link href="/profile"><i className="fas fa-user-circle"></i> Profile</Link>
           <Link href="/settings"><i className="fas fa-cog"></i> Settings</Link>
+          <a href="#" onClick={(e) => { e.preventDefault(); document.body.classList.toggle('dark-theme'); }} style={{ cursor: 'pointer' }}><i className="fas fa-moon"></i> Dark Mode</a>
           
           <div className="nav-section">Community & Support</div>
           <Link href="/community"><i className="fas fa-users"></i> Community Hub</Link>
