@@ -892,7 +892,7 @@ ul { list-style: none; }
   .nav-links {
     position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
     background: rgba(10,10,26,0.98); backdrop-filter: blur(20px);
-    flex-direction: column; padding: 24px;
+    flex-direction: column; padding: 24px 24px 140px 24px;
     transform: translateY(-120%); transition: var(--transition);
     overflow-y: auto; gap: 4px; z-index: 999;
   }
