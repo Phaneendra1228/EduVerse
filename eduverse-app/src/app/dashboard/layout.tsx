@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname = usePathname();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('eduverse_user') || '{}');
+    const user = JSON.parse(sessionStorage.getItem('eduverse_user') || '{}');
     if (user.name) {
       setUserName(user.name);
     }
@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const handleLogout = async () => {
     // Also clear localStorage just in case, but rely on NextAuth to sign out
-    localStorage.removeItem('eduverse_user');
+    sessionStorage.removeItem('eduverse_user');
     const { signOut } = await import('next-auth/react');
     await signOut({ callbackUrl: '/login' });
   };

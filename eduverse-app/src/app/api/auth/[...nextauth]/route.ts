@@ -86,6 +86,20 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
+    // Session expires when browser closes (no maxAge means browser-session cookie)
+    maxAge: 0,
+  },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+        // No maxAge = browser-session cookie, auto-deleted when browser closes
+      },
+    },
   },
   pages: {
     signIn: "/login",

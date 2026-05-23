@@ -61,7 +61,7 @@ export default function CommunityPage() {
         body: JSON.stringify({
           title: newTitle,
           preview: newPreview,
-          author: JSON.parse(localStorage.getItem('eduverse_user') || '{}').name || 'Anonymous Student',
+          author: JSON.parse(sessionStorage.getItem('eduverse_user') || '{}').name || 'Anonymous Student',
           tags: parsedTags
         })
       });

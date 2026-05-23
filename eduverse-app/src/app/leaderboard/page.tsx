@@ -9,7 +9,7 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     // Get logged in user
-    const localUser = JSON.parse(localStorage.getItem('eduverse_user') || '{}');
+    const localUser = JSON.parse(sessionStorage.getItem('eduverse_user') || '{}');
     
     fetch('/api/users')
       .then(res => res.json())
