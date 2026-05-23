@@ -70,17 +70,17 @@ export default function Navbar() {
         <div className="container">
           <Link href="/" className="nav-logo">Edu<span>Verse</span></Link>
           <div className={`nav-links ${isOpen ? "open" : ""}`} id="navLinks">
-            <Link href="/" className={pathname === "/" ? "active" : ""}>Home</Link>
-            <Link href="/meetings" className={pathname === "/meetings" ? "active" : ""}>Meetings</Link>
-            <Link href="/about" className={pathname === "/about" ? "active" : ""}>About Us</Link>
-            <Link href="/courses" className={pathname === "/courses" ? "active" : ""}>Courses</Link>
-            <Link href="/career" className={pathname === "/career" ? "active" : ""}>Career Guidance</Link>
-            <Link href="/resume" className={pathname === "/resume" ? "active" : ""}>Resume Builder</Link>
-            <Link href="/dossier" className={pathname === "/dossier" ? "active" : ""}>Dossier</Link>
-            <Link href="/profile" className={pathname === "/profile" ? "active" : ""}>Profile</Link>
+            <Link href="/" className={pathname === "/" ? "active" : ""} onClick={() => setIsOpen(false)}>Home</Link>
+            <Link href="/meetings" className={pathname === "/meetings" ? "active" : ""} onClick={() => setIsOpen(false)}>Meetings</Link>
+            <Link href="/about" className={pathname === "/about" ? "active" : ""} onClick={() => setIsOpen(false)}>About Us</Link>
+            <Link href="/courses" className={pathname === "/courses" ? "active" : ""} onClick={() => setIsOpen(false)}>Courses</Link>
+            <Link href="/career" className={pathname === "/career" ? "active" : ""} onClick={() => setIsOpen(false)}>Career Guidance</Link>
+            <Link href="/resume" className={pathname === "/resume" ? "active" : ""} onClick={() => setIsOpen(false)}>Resume Builder</Link>
+            <Link href="/dossier" className={pathname === "/dossier" ? "active" : ""} onClick={() => setIsOpen(false)}>Dossier</Link>
+            <Link href="/profile" className={pathname === "/profile" ? "active" : ""} onClick={() => setIsOpen(false)}>Profile</Link>
             
             <div className="nav-actions-group">
-              <Link href="/dashboard" className="nav-action-link accent"><i className="fas fa-th-large"></i> Dashboard</Link>
+              <Link href="/dashboard" className="nav-action-link accent" onClick={() => setIsOpen(false)}><i className="fas fa-th-large"></i> Dashboard</Link>
 
               {/* Notification Bell */}
               {session && (
@@ -137,9 +137,9 @@ export default function Navbar() {
               )}
 
               {session ? (
-                <a href="#" onClick={handleLogout} className="nav-action-link accent"><i className="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="#" onClick={(e) => { handleLogout(e); setIsOpen(false); }} className="nav-action-link accent"><i className="fas fa-sign-out-alt"></i> Logout</a>
               ) : (
-                <Link href="/login" className="nav-action-link accent"><i className="fas fa-sign-in-alt"></i> Login</Link>
+                <Link href="/login" className="nav-action-link accent" onClick={() => setIsOpen(false)}><i className="fas fa-sign-in-alt"></i> Login</Link>
               )}
               
               <div className="nav-translate-wrapper">
