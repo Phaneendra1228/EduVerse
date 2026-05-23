@@ -26,7 +26,7 @@ export default function CertificatePage() {
       // Find course details
       const cId = params.courseId as string;
       const foundCourse = coursesData.find(
-        c => c.id.toString() === cId || c._id === cId || c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === cId
+        c => c.id.toString() === cId || c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === cId
       );
       setCourse(foundCourse);
 

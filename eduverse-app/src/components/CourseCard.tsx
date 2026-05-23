@@ -9,17 +9,23 @@ import { useSession } from 'next-auth/react';
 interface CourseProps {
   course: {
     _id?: string;
+    id?: number;
     title: string;
-    description: string;
+    description?: string;
+    desc?: string;
     rating: number;
     reviews: number;
     hours: number;
     price: number | string;
     tag: string;
-    instructorName: string;
-    instructorRole: string;
-    instructorInitials: string;
-    image: string;
+    instructorName?: string;
+    instructor?: string;
+    instructorRole?: string;
+    role?: string;
+    instructorInitials?: string;
+    initials?: string;
+    image?: string;
+    img?: string;
   };
 }
 
