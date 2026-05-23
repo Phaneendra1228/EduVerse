@@ -43,6 +43,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="nav-section">Account</div>
           <Link href="/profile"><i className="fas fa-user-circle"></i> Profile</Link>
           <Link href="/settings"><i className="fas fa-cog"></i> Settings</Link>
+          
+          <div className="nav-section">Community & Support</div>
+          <Link href="/community"><i className="fas fa-users"></i> Community Hub</Link>
+          <Link href="/leaderboard"><i className="fas fa-crown"></i> Leaderboard</Link>
+          <Link href="/help"><i className="fas fa-life-ring"></i> Help Center</Link>
         </nav>
         
         <div className="sidebar-bottom" style={{ marginTop: 'auto', borderTop: '1px solid rgba(108,92,231,0.1)', background: '#fff' }}>
