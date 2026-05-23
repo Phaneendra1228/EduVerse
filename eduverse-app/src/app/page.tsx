@@ -42,19 +42,6 @@ export default function Home() {
               <div className="hero-stat"><h3>98<span className="accent">%</span></h3><p>Success Rate</p></div>
             </div>
           </div>
-          <div className="hero-image">
-            <img src="/images/hero-banner.png" alt="Students learning together" />
-            <div className="hero-floating-card card-1">
-              <div className="card-icon">🎓</div>
-              <h4>150+ Mentors</h4>
-              <p>Industry experts ready to guide</p>
-            </div>
-            <div className="hero-floating-card card-2">
-              <div className="card-icon">🏆</div>
-              <h4>Top Rated</h4>
-              <p>4.9/5 student satisfaction</p>
-            </div>
-          </div>
         </div>
       </section>
 

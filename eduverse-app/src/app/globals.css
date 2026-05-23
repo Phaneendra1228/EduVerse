@@ -319,8 +319,7 @@ a:active, button:active, .btn:active, .nav-action-link:active, .nav-links > a:ac
 }
 
 .hero .container {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
   position: relative; z-index: 2;
 }
 .hero-badge {
@@ -347,11 +346,11 @@ a:active, button:active, .btn:active, .nav-action-link:active, .nav-links > a:ac
   background: var(--gradient-primary); -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; background-clip: text;
 }
-.hero p { color: rgba(255,255,255,0.7); font-size: 1.15rem; margin-bottom: 32px; max-width: 500px; }
-.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero p { color: rgba(255,255,255,0.7); font-size: 1.15rem; margin: 0 auto 32px; max-width: 600px; }
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .hero-stats {
-  display: flex; gap: 40px; margin-top: 48px;
-  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; gap: 40px; margin-top: 48px; justify-content: center;
+  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 800px; margin-left: auto; margin-right: auto;
 }
 .hero-stat h3 { font-size: 2rem; color: #fff; font-weight: 800; }
 .hero-stat h3 .accent { color: var(--accent); }
@@ -900,7 +899,7 @@ a:active, button:active, .btn:active, .nav-action-link:active, .nav-links > a:ac
 
 /* --- Tablet Landscape (max-width: 1024px) --- */
 @media (max-width: 1024px) {
-  .hero .container { grid-template-columns: 1fr; text-align: center; }
+  .hero .container { text-align: center; }
   .hero p { margin: 0 auto 32px; }
   .hero-btns { justify-content: center; }
   .hero-stats { justify-content: center; }
