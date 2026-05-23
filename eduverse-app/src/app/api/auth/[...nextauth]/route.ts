@@ -86,22 +86,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
-    // JWT is valid for 24 hours (this is the TOKEN lifetime, not the cookie)
-    maxAge: 24 * 60 * 60,
-  },
-  cookies: {
-    sessionToken: {
-      name: `next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax',
-        path: '/',
-        secure: process.env.NODE_ENV === 'production',
-        // NO maxAge here = browser-session cookie.
-        // The browser deletes this cookie when it closes,
-        // even though the JWT inside it would be valid for 24h.
-      },
-    },
+    maxAge: 24 * 60 * 60, // 24 hours
   },
   pages: {
     signIn: "/login",
