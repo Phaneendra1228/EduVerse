@@ -43,9 +43,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="nav-section">Account</div>
           <Link href="/profile"><i className="fas fa-user-circle"></i> Profile</Link>
           <Link href="/settings"><i className="fas fa-cog"></i> Settings</Link>
+          <button className="logout-btn" onClick={handleLogout} style={{ margin: '8px 0 0 0', padding: '12px 16px', width: '100%' }}><i className="fas fa-sign-out-alt"></i> Logout</button>
         </nav>
-        <button className="logout-btn" onClick={handleLogout}><i className="fas fa-sign-out-alt"></i> Logout</button>
-        <div className="sidebar-user">
+        <div className="sidebar-user" style={{ marginTop: 'auto' }}>
           <div className="sidebar-avatar">{userName.charAt(0).toUpperCase()}</div>
           <div className="sidebar-user-info">
             <h4>{userName}</h4>
