@@ -70,6 +70,9 @@ export default function Navbar() {
         <div className="container">
           <Link href="/" className="nav-logo">Edu<span>Verse</span></Link>
           <div className={`nav-links ${isOpen ? "open" : ""}`} id="navLinks">
+            <button className="mobile-menu-close" onClick={() => setIsOpen(false)} aria-label="Close menu">
+              <i className="fas fa-times"></i>
+            </button>
             <Link href="/" className={pathname === "/" ? "active" : ""} onClick={() => setIsOpen(false)}>Home</Link>
             <Link href="/meetings" className={pathname === "/meetings" ? "active" : ""} onClick={() => setIsOpen(false)}>Meetings</Link>
             <Link href="/about" className={pathname === "/about" ? "active" : ""} onClick={() => setIsOpen(false)}>About Us</Link>
