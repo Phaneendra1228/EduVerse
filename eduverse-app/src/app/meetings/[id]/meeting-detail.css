@@ -1,0 +1,175 @@
+/* Meeting Detail Styles */
+
+.meeting-detail-hero {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  padding: 100px 0 60px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.meeting-detail-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(108, 92, 231, 0.8));
+}
+
+.meeting-detail-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.meeting-tag {
+  display: inline-block;
+  background: rgba(0, 206, 201, 0.2);
+  color: #00cec9;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 206, 201, 0.3);
+}
+
+.meeting-detail-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.meeting-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+}
+
+.meta-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* Content Section */
+.meeting-detail-content {
+  padding: 80px 0;
+  background-color: #fafaff;
+}
+
+.meeting-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+.meeting-about h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+}
+
+.meeting-about p {
+  font-size: 1.1rem;
+  color: #4a4a6a;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+/* RSVP Sidebar */
+.rsvp-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 15px 40px rgba(108, 92, 231, 0.08);
+  border: 1px solid rgba(108, 92, 231, 0.1);
+  position: sticky;
+  top: 100px;
+}
+
+.rsvp-price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.btn-rsvp {
+  width: 100%;
+  background: linear-gradient(135deg, #6c5ce7, #4a3dc7);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
+  margin-bottom: 20px;
+}
+
+.btn-rsvp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(108, 92, 231, 0.3);
+}
+
+.btn-rsvp.registered {
+  background: #00b894;
+  box-shadow: 0 10px 20px rgba(0, 184, 148, 0.2);
+  pointer-events: none;
+}
+
+.meeting-includes {
+  margin-top: 32px;
+}
+
+.meeting-includes h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+}
+
+.include-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #4a4a6a;
+}
+
+.include-icon {
+  color: #00cec9;
+}
+
+@media (max-width: 992px) {
+  .meeting-grid {
+    grid-template-columns: 1fr;
+  }
+}

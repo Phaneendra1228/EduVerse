@@ -1,0 +1,237 @@
+/* Certificate Page Layout */
+
+.cert-page-wrapper {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120px 20px 60px;
+}
+
+.cert-actions {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.btn-print {
+  background: #1a1a2e;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-print:hover {
+  background: #2a2a4e;
+  transform: translateY(-2px);
+}
+
+.btn-back {
+  background: white;
+  color: #4a4a6a;
+  border: 1px solid #d0d0e0;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: #f8f9fa;
+  color: #1a1a2e;
+}
+
+/* The Certificate Itself */
+
+.certificate-container {
+  width: 100%;
+  max-width: 1000px;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.certificate-border {
+  border: 12px solid #1a1a2e;
+  padding: 40px;
+  position: relative;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* Decorative Corners */
+.certificate-border::before,
+.certificate-border::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border: 4px solid var(--primary);
+  opacity: 0.5;
+}
+
+.certificate-border::before {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.certificate-border::after {
+  bottom: 10px;
+  right: 10px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Inner Corner accents */
+.cert-corner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: var(--gold);
+}
+.cert-corner.tl { top: -12px; left: -12px; }
+.cert-corner.tr { top: -12px; right: -12px; }
+.cert-corner.bl { bottom: -12px; left: -12px; }
+.cert-corner.br { bottom: -12px; right: -12px; }
+
+/* Content */
+.cert-content {
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  padding: 40px 20px;
+}
+
+.cert-header {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+.cert-subheader {
+  font-size: 1.2rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 60px;
+}
+
+.cert-text {
+  font-size: 1.2rem;
+  color: #4a4a6a;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.cert-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #d0d0e0;
+  display: inline-block;
+  padding: 0 40px 10px;
+}
+
+.cert-course {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 60px;
+}
+
+.cert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 60px;
+  padding: 0 40px;
+}
+
+.cert-signature {
+  text-align: center;
+}
+
+.cert-signature img {
+  height: 60px;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.cert-line {
+  width: 200px;
+  height: 2px;
+  background: #1a1a2e;
+  margin-bottom: 10px;
+}
+
+.cert-seal {
+  width: 120px;
+  height: 120px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  box-shadow: 0 10px 20px rgba(249, 202, 36, 0.4);
+  position: relative;
+}
+.cert-seal::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px dashed white;
+  border-radius: 50%;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .certificate-container, .certificate-container * {
+    visibility: visible;
+  }
+  .certificate-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  .cert-page-wrapper {
+    background: white;
+    padding: 0;
+  }
+  .cert-actions {
+    display: none;
+  }
+}
