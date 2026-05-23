@@ -17,7 +17,7 @@ export default function Home() {
       {/* Hero */}
       <section className="hero" id="hero">
         <video autoPlay muted loop playsInline className="hero-video-bg">
-          <source src="/videos/course-video.mp4" type="video/mp4" />
+          <source src="/videos/new-bg-video.mp4" type="video/mp4" />
         </video>
         <div className="hero-overlay"></div>
         
