@@ -9,6 +9,7 @@ export default function Login() {
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   // Forgot Password State
@@ -44,6 +45,7 @@ export default function Login() {
     const password = formData.get('password') as string;
 
     if (mode === "login" || mode === "signup") {
+      setLoading(true);
       const result = await signIn('credentials', {
         email,
         password,
@@ -64,6 +66,7 @@ export default function Login() {
         }
       } else {
         alert("Authentication failed. Please check your credentials.");
+        setLoading(false);
       }
     }
   };
@@ -273,9 +276,13 @@ export default function Login() {
                 </div>
               )}
 
-              <button type="submit" className="login-submit-btn">
+              <button type="submit" className="login-submit-btn" disabled={loading}>
                 <span className="btn-text">
-                  {mode === "login" ? "Login to Account" : "Create Account"}
+                  {loading ? (
+                    <><i className="fas fa-spinner fa-spin" style={{ marginRight: '8px' }}></i> Please wait...</>
+                  ) : (
+                    mode === "login" ? "Login to Account" : "Create Account"
+                  )}
                 </span>
               </button>
             </form>
