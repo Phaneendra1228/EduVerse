@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import GoogleTranslate from "@/components/GoogleTranslate";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -138,6 +139,10 @@ export default function Navbar() {
               ) : (
                 <Link href="/login" className="nav-action-link accent"><i className="fas fa-sign-in-alt"></i> Login</Link>
               )}
+              
+              <div className="nav-translate-wrapper">
+                <GoogleTranslate />
+              </div>
             </div>
           </div>
           <button 

@@ -51,6 +51,17 @@ export default function GoogleTranslate() {
           font-family: 'Inter', 'Outfit', sans-serif;
         }
 
+        @media (max-width: 768px) {
+          .google-translate-widget {
+            position: static;
+            width: 100%;
+            box-shadow: none;
+            margin-top: 16px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+          }
+        }
+
         .gt-header {
           color: #f8fafc;
           font-size: 0.85rem;

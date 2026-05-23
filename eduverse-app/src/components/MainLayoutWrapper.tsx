@@ -22,7 +22,6 @@ export default function MainLayoutWrapper({ children }: { children: React.ReactN
       {children}
       <Footer />
       <Chatbot />
-      <GoogleTranslate />
     </>
   );
 }
