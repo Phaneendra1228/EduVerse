@@ -1,11 +1,21 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
 import dbConnect from "@/lib/mongodb";
 import { User } from "@/models/User";
 // import bcrypt from "bcryptjs"; // For future password hashing
 
 export const authOptions: NextAuthOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID || "",
+      clientSecret: process.env.GITHUB_SECRET || "",
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -42,9 +52,26 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({ user, account }) {
+      if (account?.provider === "google" || account?.provider === "github") {
+        await dbConnect();
+        let dbUser = await User.findOne({ email: user.email });
+        if (!dbUser) {
+          dbUser = await User.create({
+            name: user.name || "User",
+            email: user.email || "",
+            password: `oauth_${Math.random().toString(36).substring(7)}`,
+            role: "student",
+          });
+        }
+        (user as any).role = dbUser.role;
+        user.id = dbUser._id.toString();
+      }
+      return true;
+    },
+    async jwt({ token, user, account }) {
       if (user) {
-        token.role = (user as any).role;
+        token.role = (user as any).role || "student";
         token.id = user.id;
       }
       return token;
