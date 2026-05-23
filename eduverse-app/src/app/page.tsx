@@ -16,6 +16,11 @@ export default function Home() {
     <div className="page active" id="page-home">
       {/* Hero */}
       <section className="hero" id="hero">
+        <video autoPlay muted loop playsInline className="hero-video-bg">
+          <source src="/videos/course-video.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-overlay"></div>
+        
         <div className="hero-particles">
           <div className="particle"></div>
           <div className="particle"></div>

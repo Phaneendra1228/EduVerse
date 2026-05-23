@@ -275,13 +275,31 @@ a:active, button:active, .btn:active, .nav-action-link:active, .nav-links > a:ac
 /* ========== Hero ========== */
 .hero {
   position: relative; min-height: 92vh;
-  background: var(--gradient-hero);
+  background: transparent;
   display: flex; align-items: center;
   padding: 80px 0;
   overflow: hidden;
 }
+.hero-video-bg {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--gradient-hero);
+  opacity: 0.85; /* Adjust opacity as needed for readability */
+  z-index: 1;
+}
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
 .hero-particles {
   position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  z-index: 2;
 }
 .hero-particles .particle {
   position: absolute; border-radius: 50%;
