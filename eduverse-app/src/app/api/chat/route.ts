@@ -23,9 +23,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Message is required' }, { status: 400 });
     }
 
-    // Use Gemini 1.5 Flash for fast chat responses
+    // Use the latest Gemini Flash model for fast chat responses
     const model = genAI.getGenerativeModel({ 
-      model: 'gemini-1.5-flash',
+      model: 'gemini-3.5-flash',
       systemInstruction: "You are EduBot, a helpful, friendly, and expert AI assistant for the EduVerse platform. EduVerse is an immersive learning platform connecting students with world-class education, mentorship, and career resources. Keep your answers concise, professional, and encouraging. Use emojis occasionally."
     });
 
