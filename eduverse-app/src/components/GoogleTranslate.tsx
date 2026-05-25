@@ -74,6 +74,8 @@ export default function GoogleTranslate() {
         #google_translate_element {
           display: flex;
           align-items: center;
+          height: 24px;
+          overflow: hidden; /* Bulletproof way to hide the "Powered by Google" text below the select */
         }
 
         /* Style the native select dropdown */
@@ -87,6 +89,8 @@ export default function GoogleTranslate() {
           cursor: pointer;
           outline: none !important;
           width: auto !important;
+          height: 24px !important;
+          line-height: 24px !important;
           appearance: none;
           -webkit-appearance: none;
           -moz-appearance: none;
@@ -102,16 +106,16 @@ export default function GoogleTranslate() {
           color: white;
         }
 
-
         /* Hide the 'Powered by Google' text that leaks out */
-        .goog-logo-link {
+        .goog-logo-link, .goog-logo-link img {
           display: none !important;
         }
         .goog-te-gadget {
           color: transparent !important;
           font-size: 0 !important;
-        }
-        .goog-te-gadget .goog-te-combo {
+          height: 24px !important;
+          display: flex;
+          align-items: center;
           margin: 0 !important;
         }
 
