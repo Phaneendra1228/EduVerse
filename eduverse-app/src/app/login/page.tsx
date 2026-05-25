@@ -69,7 +69,7 @@ export default function Login() {
           window.location.href = '/dashboard';
         }
       } else {
-        alert("Authentication failed. Please check your credentials.");
+        alert(result?.error || "Authentication failed. Please check your credentials.");
         setLoading(false);
       }
     }

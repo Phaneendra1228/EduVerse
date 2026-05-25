@@ -29,6 +29,25 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Missing credentials");
         }
 
+        // Basic email format validation
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(credentials.email)) {
+          throw new Error("Invalid email format");
+        }
+
+        // Prevent emails with only numbers before the @ symbol (e.g. 123@gmail.com)
+        const localPart = credentials.email.split('@')[0];
+        if (/^\d+$/.test(localPart)) {
+          throw new Error("Numeric-only email addresses are not allowed. Please use a real email.");
+        }
+
+        // Prevent common disposable/fake email domains
+        const domainPart = credentials.email.split('@')[1].toLowerCase();
+        const fakeDomains = ['tempmail.com', '10minutemail.com', 'mailinator.com', 'guerrillamail.com', 'yopmail.com', 'throwawaymail.com'];
+        if (fakeDomains.includes(domainPart)) {
+          throw new Error("Disposable or fake email providers are not allowed. Please use a real email.");
+        }
+
         // For V1 transition, we can auto-create the user or accept a dummy login
         let user = await User.findOne({ email: credentials.email });
 
