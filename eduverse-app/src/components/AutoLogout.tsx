@@ -10,26 +10,8 @@ export default function AutoLogout() {
   // 2 minutes in milliseconds
   const TIMEOUT_MS = 2 * 60 * 1000;
 
-  // --- Browser-close detection ---
-  // sessionStorage is cleared when the browser closes.
-  // If user has a session but no sessionStorage flag, the browser was restarted.
-  useEffect(() => {
-    if (status === 'loading') return;
-
-    if (status === 'authenticated') {
-      const browserFlag = sessionStorage.getItem('eduverse_browser_session');
-      if (!browserFlag) {
-        // Browser was closed and reopened — auto sign out
-        signOut({ callbackUrl: '/login' });
-        return;
-      }
-    }
-  }, [status]);
-
-  // Always set the flag on mount (persists within this browser session)
-  useEffect(() => {
-    sessionStorage.setItem('eduverse_browser_session', 'active');
-  }, []);
+  // Browser close detection is now handled by NextAuth session cookies directly.
+  // Idle timeout logic remains below.
 
   // --- Idle timeout ---
   useEffect(() => {

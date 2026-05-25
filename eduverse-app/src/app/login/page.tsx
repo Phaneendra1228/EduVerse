@@ -59,9 +59,6 @@ export default function Login() {
       });
 
       if (result?.ok) {
-        // Mark this browser session as authenticated (for auto-logout on browser close)
-        sessionStorage.setItem('eduverse_browser_session', 'active');
-        
         // Hard navigation is faster than client-side routing for post-login redirect.
         if (email === 'admin@eduverse.com') {
           window.location.href = '/admin';
