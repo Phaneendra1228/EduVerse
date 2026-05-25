@@ -10,8 +10,36 @@ export default function AutoLogout() {
   // 2 minutes in milliseconds
   const TIMEOUT_MS = 2 * 60 * 1000;
 
-  // Browser close detection is now handled by NextAuth session cookies directly.
-  // Idle timeout logic remains below.
+  // --- Tab/Browser Close Detection (Heartbeat Logic) ---
+  // We use a localStorage heartbeat to track if ANY tab is open.
+  // If all tabs are closed, the heartbeat stops. If the user returns after 10 seconds, we log them out.
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      localStorage.removeItem('eduverse_last_active');
+      return;
+    }
+
+    if (status === 'authenticated') {
+      const lastActiveStr = localStorage.getItem('eduverse_last_active');
+      if (lastActiveStr) {
+        const lastActiveTime = parseInt(lastActiveStr, 10);
+        // If it's been more than 10 seconds since the last heartbeat, all tabs were closed!
+        if (Date.now() - lastActiveTime > 10000) {
+          localStorage.removeItem('eduverse_last_active');
+          signOut({ callbackUrl: '/login' });
+          return;
+        }
+      }
+
+      // Start the heartbeat for this tab
+      localStorage.setItem('eduverse_last_active', Date.now().toString());
+      const heartbeat = setInterval(() => {
+        localStorage.setItem('eduverse_last_active', Date.now().toString());
+      }, 2000);
+
+      return () => clearInterval(heartbeat);
+    }
+  }, [status]);
 
   // --- Idle timeout ---
   useEffect(() => {
