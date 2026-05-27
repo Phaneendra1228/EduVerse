@@ -88,6 +88,9 @@ export default function QuizInterface() {
     return () => clearInterval(timer);
   }, [timeLeft, isFinished, loading, questions.length]);
 
+  const finalScore = questions.length ? Math.round((score / questions.length) * 100) : 0;
+  const passed = finalScore >= 60;
+
   // Background Progress Update
   useEffect(() => {
     if (isFinished && course) {
@@ -158,9 +161,6 @@ export default function QuizInterface() {
     const s = seconds % 60;
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
-
-  const finalScore = Math.round((score / questions.length) * 100);
-  const passed = finalScore >= 60;
 
   if (isFinished) {
     return (
