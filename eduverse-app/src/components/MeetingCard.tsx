@@ -20,7 +20,7 @@ export default function MeetingCard({ meeting }: MeetingProps) {
       <div className="meeting-card" data-cat={meeting.cat} style={{ cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
         <div className="meeting-card-img">
           <img src={meeting.img} alt={meeting.title} loading="lazy" />
-          <span className="meeting-card-price">{meeting.price}</span>
+          <span className="meeting-card-price">{String(meeting.price).replace(/[^0-9.]/g, '') === '0' || meeting.price === 'Free' ? 'Free' : `₹${String(meeting.price).replace(/[^0-9.]/g, '')}`}</span>
         </div>
         <div className="meeting-card-body">
           <div className="meeting-card-date">

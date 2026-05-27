@@ -102,7 +102,7 @@ export default function MeetingDetailPage() {
             {/* Right Sidebar */}
             <div className="meeting-sidebar">
               <div className="rsvp-card">
-                <div className="rsvp-price">{meeting.price === '$0' || meeting.price === 'Free' ? 'Free' : meeting.price}</div>
+                <div className="rsvp-price">{meeting.price === '₹0' || meeting.price === 'Free' || String(meeting.price).replace(/[^0-9.]/g, '') === '0' ? 'Free' : `₹${String(meeting.price).replace(/[^0-9.]/g, '')}`}</div>
                 
                 <button 
                   className={`btn-rsvp ${isRegistered ? 'registered' : ''}`} 

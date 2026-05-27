@@ -52,7 +52,7 @@ export default function CourseCard({ course }: CourseProps) {
       <div className="course-card-img">
         <img src={course.image || course.img} alt={course.title} loading="lazy" />
         <span className="course-card-tag">{course.tag}</span>
-        <span className="course-card-price">${course.price}</span>
+        <span className="course-card-price">₹{String(course.price).replace(/[^0-9.]/g, '')}</span>
       </div>
       <div className="course-card-body">
         <h3>{course.title}</h3>

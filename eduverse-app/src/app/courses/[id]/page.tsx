@@ -547,11 +547,11 @@ export default function CourseDetailPage() {
               <div className="detail-sidebar">
                 <div className="enroll-section">
                   <div className="course-price">
-                    <span className="original-price">${(course.price * 1.5).toFixed(2)}</span>
-                    ${course.price}
+                    <span className="original-price">₹{(course.price * 1.5).toFixed(0)}</span>
+                    ₹{course.price}
                   </div>
                   <button className="btn-enroll-lg" onClick={handleEnroll}>
-                    {!session ? 'Sign in to Enroll' : (course.price && course.price > 0 ? `Buy for $${course.price}` : 'Enroll Now')}
+                    {!session ? 'Sign in to Enroll' : (course.price && course.price > 0 ? `Buy for ₹${course.price}` : 'Enroll Now')}
                   </button>
                   <button className="btn-wishlist" onClick={handleWishlist} style={{ color: isWishlisted ? '#ff6b6b' : '', borderColor: isWishlisted ? 'rgba(255, 107, 107, 0.3)' : '', background: isWishlisted ? 'rgba(255, 107, 107, 0.05)' : '' }}>
                     <i className={isWishlisted ? "fas fa-heart" : "far fa-heart"}></i> 
