@@ -88,24 +88,45 @@ export default function QuizInterface() {
     return () => clearInterval(timer);
   }, [timeLeft, isFinished, loading, questions.length]);
 
+  // Background Progress Update
+  useEffect(() => {
+    if (isFinished && course) {
+      // Award 100% progress if they passed, 50% if they failed but completed it
+      const progressToAward = passed ? 100 : 50;
+      
+      fetch('/api/users/progress', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          courseId: course._id || params?.id, 
+          progressIncrement: progressToAward 
+        })
+      }).catch(err => console.error("Failed to update progress:", err));
+    }
+  }, [isFinished, course, passed, params?.id]);
+
   useEffect(() => {
     fetch('/api/courses')
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
-          const courseId = params.id as string;
-          const found = data.find(c => c._id === courseId || c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === courseId);
+          const courseId = params?.id as string;
+          const found = data.find(c => c._id === courseId || (c.title && c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === courseId));
           setCourse(found);
           
           if (found) {
-            setQuestions(generateQuestionsForCourse(found.tag, found.title));
+            setQuestions(generateQuestionsForCourse(found.tag || '', found.title || ''));
           } else {
             setQuestions(generateQuestionsForCourse());
           }
         }
         setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load courses:", err);
+        setLoading(false);
       });
-  }, [params.id]);
+  }, [params?.id]);
 
   if (loading) {
     return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><h2>Loading Test Environment...</h2></div>;
@@ -140,23 +161,6 @@ export default function QuizInterface() {
 
   const finalScore = Math.round((score / questions.length) * 100);
   const passed = finalScore >= 60;
-
-  // Background Progress Update
-  useEffect(() => {
-    if (isFinished && course) {
-      // Award 100% progress if they passed, 50% if they failed but completed it
-      const progressToAward = passed ? 100 : 50;
-      
-      fetch('/api/users/progress', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          courseId: course._id || params.id, 
-          progressIncrement: progressToAward 
-        })
-      }).catch(err => console.error("Failed to update progress:", err));
-    }
-  }, [isFinished, course, passed, params.id]);
 
   if (isFinished) {
     return (
